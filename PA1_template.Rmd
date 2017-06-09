@@ -34,6 +34,16 @@ Mean number of steps per day is `r mean_steps`, while median number of steps per
 
 ## What is the average daily activity pattern?
 
+```{r echo = TRUE}
+steps_per_interval <- aggregate(activity$steps, list(activity$interval), function(x) {mean(x, na.rm = TRUE)})
+ggplot(steps_per_interval, aes(strptime(Group.1, format="%H%M"), x)) + geom_line()+ xlab("Time") + ylab("Number of Steps")
+```
+
+```{r echo = TRUE}
+max_steps <- max(steps_per_interval$x)
+max_interval <- steps_per_interval[steps_per_interval$x == max_steps,]$Group.1
+# max_interval <- strptime(max_interval, format="%H%M")
+```
 
 
 ## Imputing missing values

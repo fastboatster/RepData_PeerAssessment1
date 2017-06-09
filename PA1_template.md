@@ -53,6 +53,24 @@ Mean number of steps per day is 1.0766189\times 10^{4}, while median number of s
 ## What is the average daily activity pattern?
 
 
+```r
+steps_per_interval <- aggregate(activity$steps, list(activity$interval), function(x) {mean(x, na.rm = TRUE)})
+ggplot(steps_per_interval, aes(strptime(Group.1, format="%H%M"), x)) + geom_line()+ xlab("Time") + ylab("Number of Steps")
+```
+
+```
+## Warning: Removed 99 rows containing missing values (geom_path).
+```
+
+![](PA1_template_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
+
+
+```r
+max_steps <- max(steps_per_interval$x)
+max_interval <- steps_per_interval[steps_per_interval$x == max_steps,]$Group.1
+max_interval <- strptime(max_interval, format="%H%M")
+```
+
 
 ## Imputing missing values
 
