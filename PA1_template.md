@@ -78,19 +78,8 @@ qplot(steps_per_day$x, geom = "histogram")
 ```r
 mean_steps <- mean(steps_per_day$x, na.rm = TRUE)
 median_steps <- median(steps_per_day$x, na.rm = TRUE)
-print(mean_steps)
-```
-
-```
-## [1] 10766.19
-```
-
-```r
-print(median_steps)
-```
-
-```
-## [1] 10765
+# print(mean_steps)
+# print(median_steps)
 ```
 
 _Mean number of steps per day is 10766.1886792453, while median number of steps per day is 10765._
@@ -113,19 +102,8 @@ ggplot(steps_per_interval, aes(Group.1, x)) + geom_line()+ xlab("Interval") + yl
 ```r
 max_steps <- max(steps_per_interval$x)
 max_interval <- steps_per_interval[steps_per_interval$x == max_steps,]$Group.1
-print(max_interval)
-```
-
-```
-## [1] 835
-```
-
-```r
-print(max_steps)
-```
-
-```
-## [1] 206.1698
+# print(max_interval)
+# print(max_steps)
 ```
 _We can see that interval 835 contains the maximum number of steps (206.1698113)._
 
@@ -136,11 +114,7 @@ _We can see that interval 835 contains the maximum number of steps (206.1698113)
 
 ```r
 num_na <- nrow(activity[is.na(activity$steps) == TRUE,])
-print(num_na)
-```
-
-```
-## [1] 2304
+# print(num_na)
 ```
 _Total number of missing values in the dataset is 2304._
 
@@ -174,22 +148,8 @@ activity_imputed$steps <- apply(data.matrix(activity_imputed), MARGIN = 1, FUN =
 steps_per_day_imputed <- aggregate(activity_imputed$steps, list(activity_imputed$date), sum)
 mean_steps_imp <- mean(steps_per_day_imputed$x)
 median_steps_imp <- median(steps_per_day_imputed$x)
-print(median_steps_imp)
-```
-
-```
-## [1] 10766.19
-```
-
-```r
-print(mean_steps_imp)
-```
-
-```
-## [1] 10766.19
-```
-
-```r
+# print(median_steps_imp)
+# print(mean_steps_imp)
 qplot(steps_per_day_imputed$x, geom = "histogram") 
 ```
 
